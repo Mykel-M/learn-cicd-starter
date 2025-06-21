@@ -10,7 +10,7 @@ func TestGetAPIKey(t *testing.T) {
 	// Test 1: Valid API key
 	req := httptest.NewRequest(http.MethodGet, "/", nil)
 	req.Header.Set("Authorization", "ApiKey abc123")
-	
+
 	apiKey, err := GetAPIKey(req.Header)
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
@@ -23,7 +23,7 @@ func TestGetAPIKey(t *testing.T) {
 func TestGetAPIKeyMissingHeader(t *testing.T) {
 	// Test 2: Missing Authorization header
 	req := httptest.NewRequest(http.MethodGet, "/", nil)
-	
+
 	_, err := GetAPIKey(req.Header)
 	if err != ErrNoAuthHeaderIncluded {
 		t.Errorf("expected ErrNoAuthHeaderIncluded, got %v", err)
